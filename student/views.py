@@ -30,21 +30,21 @@ def detail_student(request, student_id):
 
 def edit_student(request, student_id):
     context = {'action': 'Editar'}
+    student = Student.objects.get(pk=student_id)
     if request.POST:
-        form = StudentForm(request.POST)
+        form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('student:list-student'))
         else:
             context['form'] = form
-            return render(request, 'disk/form_student.html', context)
+            return render(request, 'student/form_student.html', context)
     else:
-        student = Student.objects.get(pk=student_id)
         form = StudentForm(instance=student)
         context['form'] = form
 
         return render(request, 'student/form_student.html', context)
-    
+        
 def delete_student(request, student_id):
     student = Student.objects.get(pk=student_id)
     student.delete()
