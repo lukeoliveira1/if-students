@@ -12,19 +12,17 @@
        <thead>
            <tr>
                <th scope="col">Nome</th>
-               <th scope="col">Endereço</th>
                <th scope="col">E-mail</th>
                <th scope="col">Data de Nascimento</th>
                <th scope="col">Cidade</th>
                <th scope="col">Curso</th>
-               <th scope="col">#</th>
+               <th scope="col">Ações</th>
            </tr>
        </thead>
        {% for student in students %}
        <tbody>
            <tr>
                <td><a href="{% url 'student:detail-student' student.id%}">{{ student.name }}</a></td>
-               <td>{{ student.address }}</td>
                <td>{{ student.email }}</td>
                <td>{{ student.date_of_birth }}</td>
                <td>{{ student.city }}</td>
